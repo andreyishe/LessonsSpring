@@ -17,7 +17,8 @@
           class="ua.spring.lessons.RockMusic">
     </bean>
     <bean id = "musicPlayer"
-          class="ua.spring.lessons.MusicPlayer">
+          class="ua.spring.lessons.MusicPlayer"
+            scope="prototype">
         <property name="musicList">
             <list>
             <ref bean="musicBean1"/>
