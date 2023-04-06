@@ -8,24 +8,27 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="MusicPlayer.properties"></context:property-placeholder>
     <bean id="musicBean1"
-          class="ua.spring.lessons.ClassicalMusic">
-    </bean>
-    <bean id="musicBean2"
-          class="ua.spring.lessons.DeepHouseMusic">
-    </bean>
-    <bean id="musicBean3"
-          class="ua.spring.lessons.RockMusic">
-    </bean>
-    <bean id = "musicPlayer"
-          class="ua.spring.lessons.MusicPlayer"
-            scope="prototype">
-        <property name="musicList">
-            <list>
-            <ref bean="musicBean1"/>
-            <ref bean="musicBean2"/>
-            <ref bean="musicBean3"/></list>
-        </property>
-        <property name="name" value="${MusicPlayer.name}"></property>
-        <property name="volume" value="${MusicPlayer.volume}"></property>
-    </bean>
+          class="ua.spring.lessons.ClassicalMusic"
+            init-method="doMyInit"
+            destroy-method="doMyDestroy"
+            factory-method="getClassicalMusic">
+   </bean>
+    <!--   <bean id="musicBean2"
+            class="ua.spring.lessons.DeepHouseMusic">
+      </bean>
+      <bean id="musicBean3"
+            class="ua.spring.lessons.RockMusic">
+      </bean>
+      <bean id = "musicPlayer"
+            class="ua.spring.lessons.MusicPlayer"
+              scope="prototype">
+          <property name="musicList">
+              <list>
+              <ref bean="musicBean1"/>
+              <ref bean="musicBean2"/>
+              <ref bean="musicBean3"/></list>
+          </property>
+          <property name="name" value="${MusicPlayer.name}"></property>
+          <property name="volume" value="${MusicPlayer.volume}"></property>
+      </bean>-->
 </beans>
