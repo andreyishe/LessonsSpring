@@ -1,51 +1,52 @@
 package ua.spring.lessons;
 
+import org.springframework.beans.factory.annotation.Value;
+import ua.spring.lessons.genre.ClassicalMusic;
+import ua.spring.lessons.genre.JazzMusic;
+import ua.spring.lessons.genre.RockMusic;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 
 public class MusicPlayer {
-    private Music music;
+
+    @Value("${MusicPlayer.name}")
     private String name;
+    @Value("${MusicPlayer.volume}")
     private int volume;
-
-    private List<Music> musicList = new ArrayList<Music>();
-
-    public MusicPlayer(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
+    private List<String> genrelist = new ArrayList<String>();
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public MusicPlayer(Music music){
-        this.music =music;
-    }
-    public MusicPlayer(){}
-    public void setMusic(Music music) {
-        this.music = music;
-    }
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
+    private  JazzMusic jazzMusic;
+    private Music music1;
+    private Music music2;
+    private List<Music> musicList;
 
     public void setMusicList(List<Music> musicList) {
         this.musicList = musicList;
     }
 
-    public void playMusic(){
-        for (Music music:
-             musicList) {
-            System.out.println("Playing - "+music.getSong());
-        }
+    public List<Music> getMusicList() {
+        return musicList;
+    }
+
+    public MusicPlayer (List<Music> musicList){
+        this.musicList = musicList;
+    }
+
+
+    public String playMusic(){
+        Random random = new Random();
+        return "Playing: "+ musicList.get(random.nextInt(musicList.size())).getSong()+" with volume "+this.volume;
     }
 }
